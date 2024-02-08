@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sm_iot_lab/constants/colors.dart';
 import 'package:sm_iot_lab/home.dart';
+import 'package:sm_iot_lab/mqtt/mqtt_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  MQTTService.setup();
+
   runApp(const MyApp());
 }
 
