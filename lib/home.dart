@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sm_iot_lab/constants/colors.dart';
+import 'package:sm_iot_lab/screens/scan/screens/cube_scanner_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -19,8 +20,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _widgetOptions = <Widget>[
-      const Center(),
-      const Center(),
+      const Center(
+        child: Text("Nothing yet"),
+      ),
+      const CubeScannerList(),
     ];
     _pageController = PageController(initialPage: _selectedIndex);
 

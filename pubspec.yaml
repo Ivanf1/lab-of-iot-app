@@ -37,6 +37,8 @@ dependencies:
   mqtt_client: ^10.0.3
   flutter_svg: ^2.0.9
   flutter_screenutil: ^5.9.0
+  webview_flutter: ^4.5.0
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:
