@@ -1,6 +1,6 @@
 class CubeScanner {
   int id;
-  String ipAddress;
+  String? ipAddress;
   int position;
 
   CubeScanner({
@@ -12,8 +12,8 @@ class CubeScanner {
   static CubeScanner fromMap(Map<String, dynamic> data) {
     return CubeScanner(
       id: data['id'],
-      ipAddress: data['ip_address'] ?? "",
-      position: data['id_pickup_point'] ?? -1,
+      ipAddress: data['ip_address'],
+      position: data['pickup_point']["position"],
     );
   }
 }

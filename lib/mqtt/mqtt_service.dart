@@ -1,7 +1,19 @@
+import 'dart:async';
+
 import 'package:sm_iot_lab/mqtt/mqtt_client.dart';
+
+class CubeScannedMessage {
+  final int cubeScanner;
+  final String message;
+
+  CubeScannedMessage({required this.cubeScanner, required this.message});
+}
 
 class MQTTService {
   static MQTTClient client = MQTTClient();
+
+  static final StreamController<CubeScannedMessage> currentQRcodeScanned =
+      StreamController<CubeScannedMessage>.broadcast();
 
   static Future<void> setup() async {
     bool connected = false;
@@ -9,22 +21,17 @@ class MQTTService {
       connected = await client.start();
     }
 
-    client.subscribe("sm_iot_lab/cube_dropper/+/inserted");
-    client.subscribe("sm_iot_lab/cube_dropper/+/released");
+    client.subscribe("sm_iot_lab/cube_dropper/+/cube/inserted");
+    client.subscribe("sm_iot_lab/cube_dropper/+/cube/released");
     client.subscribe("sm_iot_lab/cube_scanner/+/cube/scanned");
 
-    // client.registerTopicMessageHandler(
-    //     "sm_iot_lab/status/info", onStatusMessage);
     client.registerTopicMessageHandler("cube/inserted", onCubeInsertedMessage);
     client.registerTopicMessageHandler("cube/released", onCubeReleasedMessage);
-    client.registerTopicMessageHandler("cube/scanned", onCubeScanned);
-
-    // client.sendMessage("sm_iot_lab/status/get", "");
+    client.registerTopicMessageHandler(
+        "0/cube/scanned", (String message) => onCubeScanned(0, message));
+    client.registerTopicMessageHandler(
+        "1/cube/scanned", (String message) => onCubeScanned(1, message));
   }
-
-  // static void onStatusMessage(String message) {
-  //   // process the status update
-  // }
 
   static void onCubeInsertedMessage(String message) {
     // process the message
@@ -34,8 +41,8 @@ class MQTTService {
     // process the message
   }
 
-  static void onCubeScanned(String message) {
-    print(message);
-    // process the message
+  static void onCubeScanned(int cubeScanner, String message) {
+    currentQRcodeScanned.sink
+        .add(CubeScannedMessage(cubeScanner: cubeScanner, message: message));
   }
 }

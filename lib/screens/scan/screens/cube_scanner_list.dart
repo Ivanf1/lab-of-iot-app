@@ -49,8 +49,9 @@ class _CubeScannerListState extends State<CubeScannerList> {
               MaterialPageRoute(
                 builder: (context) {
                   return WebViewPage(
-                    name: "Cube Scanner ${item.id}",
+                    name: "Cube Scanner ${item.position}",
                     url: "http://${item.ipAddress}",
+                    position: item.position,
                   );
                 },
               ),
