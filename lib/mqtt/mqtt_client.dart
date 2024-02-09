@@ -45,12 +45,15 @@ class MQTTClient {
         final topic = receivedMessage.topic;
         print("Received message from topic $topic");
 
-        if (topicMessageHandlers.containsKey(topic)) {
-          print("Accepted message from topic $topic");
-          final received = receivedMessage.payload as MqttPublishMessage;
-          String message = MqttPublishPayload.bytesToStringAsString(
-              received.payload.message);
-          topicMessageHandlers[topic]?.call(message);
+        for (var key in topicMessageHandlers.keys) {
+          if (topic.endsWith(key)) {
+            print("Accepted message from topic $topic");
+            final received = receivedMessage.payload as MqttPublishMessage;
+            String message = MqttPublishPayload.bytesToStringAsString(
+                received.payload.message);
+            topicMessageHandlers[key]?.call(message);
+            return;
+          }
         }
       }
     });

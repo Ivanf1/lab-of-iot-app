@@ -7,7 +7,7 @@ import 'package:sm_iot_lab/mqtt/mqtt_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // MQTTService.setup();
+  MQTTService.setup();
 
   runApp(const MyApp());
 }
@@ -15,7 +15,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
