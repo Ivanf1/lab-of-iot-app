@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sm_iot_lab/constants/colors.dart';
+import 'package:sm_iot_lab/screens/map/track_map.dart';
 import 'package:sm_iot_lab/screens/scan/screens/cube_scanner_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _widgetOptions = <Widget>[
+      TrackMap(),
       const Center(
         child: Text("Nothing yet"),
       ),
@@ -68,6 +70,19 @@ class _HomePageState extends State<HomePage> {
                 margin: const EdgeInsets.only(bottom: 5.0, top: 8.0),
                 child: SvgPicture.asset(
                   _selectedIndex == 0
+                      ? "assets/navigation_bar/map_selected.svg"
+                      : "assets/navigation_bar/map.svg",
+                ),
+              ),
+              label: "Map",
+            ),
+            BottomNavigationBarItem(
+              icon: Container(
+                width: 30,
+                height: 30,
+                margin: const EdgeInsets.only(bottom: 5.0, top: 8.0),
+                child: SvgPicture.asset(
+                  _selectedIndex == 1
                       ? "assets/navigation_bar/stats_selected.svg"
                       : "assets/navigation_bar/stats.svg",
                 ),
@@ -80,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                 height: 30,
                 margin: const EdgeInsets.only(bottom: 5.0, top: 8.0),
                 child: SvgPicture.asset(
-                  _selectedIndex == 1
+                  _selectedIndex == 2
                       ? "assets/navigation_bar/scan_selected.svg"
                       : "assets/navigation_bar/scan.svg",
                 ),
