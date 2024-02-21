@@ -21,12 +21,14 @@ class MQTTService {
       connected = await client.start();
     }
 
-    client.subscribe("sm_iot_lab/cube_dropper/+/cube/inserted");
-    client.subscribe("sm_iot_lab/cube_dropper/+/cube/released");
+    client.subscribe("sm_iot_lab/pickup_point/+/cube/insert/response");
+    client.subscribe("sm_iot_lab/pickup_point/+/cube/+/release/response");
     client.subscribe("sm_iot_lab/cube_scanner/+/cube/scanned");
 
-    client.registerTopicMessageHandler("cube/inserted", onCubeInsertedMessage);
-    client.registerTopicMessageHandler("cube/released", onCubeReleasedMessage);
+    client.registerTopicMessageHandler(
+        "cube/insert/response", onCubeInsertedMessage);
+    client.registerTopicMessageHandler(
+        "cube/release/response", onCubeReleasedMessage);
     client.registerTopicMessageHandler(
         "0/cube/scanned", (String message) => onCubeScanned(0, message));
     client.registerTopicMessageHandler(

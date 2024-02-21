@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sm_iot_lab/constants/colors.dart';
 import 'package:sm_iot_lab/mqtt/mqtt_service.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -43,12 +44,10 @@ class _WebViewPageState extends State<WebViewPage> {
 
     _controller = WebViewController()
       ..setNavigationDelegate(NavigationDelegate(
-        onProgress: (progress) {
-          if (_isLoading && progress > 15) {
-            setState(() {
-              _isLoading = false;
-            });
-          }
+        onPageFinished: (url) {
+          setState(() {
+            _isLoading = false;
+          });
         },
         onWebResourceError: (error) {
           setState(() {
@@ -56,7 +55,7 @@ class _WebViewPageState extends State<WebViewPage> {
           });
         },
       ))
-      ..setJavaScriptMode(JavaScriptMode.disabled)
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(
         Uri.parse(widget.url),
       );
@@ -72,12 +71,39 @@ class _WebViewPageState extends State<WebViewPage> {
     if (_isLoading) return const Center(child: CircularProgressIndicator());
     if (_error) return const Center(child: Text("error"));
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
       children: [
         ConstrainedBox(
-          constraints: BoxConstraints.loose(const Size(400, 500)),
+          constraints: BoxConstraints.loose(const Size(400, 300)),
           child: WebViewWidget(controller: _controller),
         ),
-        if (_qrCodeMessage != "") Text(_qrCodeMessage),
+        if (_qrCodeMessage != "") _payloadView(_qrCodeMessage),
+      ],
+    );
+  }
+
+  Widget _payloadView(String payload) {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.only(
+            bottom: ScreenUtil().setHeight(20),
+            top: ScreenUtil().setHeight(20),
+          ),
+          child: Text(
+            "Last QRCode content:",
+            style: TextStyle(
+              fontSize: ScreenUtil().setSp(30),
+            ),
+          ),
+        ),
+        Text(
+          payload,
+          style: TextStyle(
+            fontSize: ScreenUtil().setSp(40),
+          ),
+        ),
       ],
     );
   }
@@ -94,7 +120,7 @@ class _WebViewPageState extends State<WebViewPage> {
         scrolledUnderElevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 40),
+        padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
         child: _buildView(),
       ),
     );

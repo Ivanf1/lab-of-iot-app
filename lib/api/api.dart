@@ -23,7 +23,7 @@ class ApiResponse {
 }
 
 class Api {
-  static const String kApiUrl = "http://172.16.165.66:3000/api";
+  static const String kApiUrl = "http://192.168.1.82:3000/api";
   static const String kApiUrlDebug = "http://localhost:8000/api";
 
   static final Map<String, String> kApiHeaders = {
