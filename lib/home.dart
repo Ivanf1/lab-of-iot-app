@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _widgetOptions = <Widget>[
-      TrackMap(),
+      const TrackMap(),
       const Stats(),
       const CubeScannerList(),
     ];
@@ -41,8 +41,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        // backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Colors.grey[300],
         toolbarHeight: 0,
       ),
       body: PageView(
