@@ -7,7 +7,7 @@ import 'package:sm_iot_lab/mqtt/mqtt_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // MQTTService.setup();
+  MQTTService.setup();
 
   runApp(const MyApp());
 }

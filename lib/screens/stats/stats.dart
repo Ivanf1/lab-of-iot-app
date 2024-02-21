@@ -129,7 +129,7 @@ class _StatsState extends State<Stats>
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(18),
                     fontWeight: FontWeight.w500,
-                    color: Colors.green,
+                    color: _scanner0Up ? Colors.green : Colors.red,
                   ),
                 ),
               ],
@@ -158,7 +158,7 @@ class _StatsState extends State<Stats>
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(18),
                     fontWeight: FontWeight.w500,
-                    color: Colors.green,
+                    color: _scanner1Up ? Colors.green : Colors.red,
                   ),
                 ),
               ],
@@ -187,7 +187,7 @@ class _StatsState extends State<Stats>
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(18),
                     fontWeight: FontWeight.w500,
-                    color: Colors.green,
+                    color: _pickupPoint0Up ? Colors.green : Colors.red,
                   ),
                 ),
               ],
@@ -216,7 +216,7 @@ class _StatsState extends State<Stats>
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(18),
                     fontWeight: FontWeight.w500,
-                    color: Colors.red,
+                    color: _pickupPoint1Up ? Colors.green : Colors.red,
                   ),
                 ),
               ],
