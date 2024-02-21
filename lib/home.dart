@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sm_iot_lab/constants/colors.dart';
-import 'package:sm_iot_lab/screens/map/track_map.dart';
+import 'package:sm_iot_lab/screens/map/route_map.dart';
 import 'package:sm_iot_lab/screens/scan/screens/cube_scanner_list.dart';
 import 'package:sm_iot_lab/screens/stats/stats.dart';
 
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _widgetOptions = <Widget>[
-      const TrackMap(),
+      const RouteMap(),
       const Stats(),
       const CubeScannerList(),
     ];

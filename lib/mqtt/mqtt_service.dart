@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:sm_iot_lab/mqtt/mqtt_client.dart';
+import 'package:sm_iot_lab/route/route_manager.dart';
 
 enum ComponentType {
   scanner,
@@ -26,23 +27,10 @@ class ComponentStatusMessage {
   });
 }
 
-class Stop {
-  final int pickupPointPosition;
-  final int cubeDropperPosition;
-
-  Stop({required this.pickupPointPosition, required this.cubeDropperPosition});
-}
-
-class CarRouteStartMessage {
-  final List<Stop> plannedStops;
-
-  CarRouteStartMessage({required this.plannedStops});
-}
-
 class MQTTService {
   static MQTTClient client = MQTTClient();
 
-  static List<ComponentStatusMessage> _componentStatus =
+  static final List<ComponentStatusMessage> _componentStatus =
       List.empty(growable: true);
 
   static final StreamController<CubeScannedMessage> currentQRcodeScanned =
@@ -133,7 +121,20 @@ class MQTTService {
     return _componentStatus;
   }
 
-  static void onCarRouteStart(String message) {}
+  static void onCarRouteUpdate() {}
 
-  static void onCarRouteEnd(String message) {}
+  static void onCarRouteStart(String message) {
+    // RouteManager.startNewRoute(
+    //   [
+    //     Stop(pickupPointPosition: 0, cubeDropperPosition: 0, passed: false),
+    //     Stop(pickupPointPosition: 0, cubeDropperPosition: 1, passed: false),
+    //     Stop(pickupPointPosition: 1, cubeDropperPosition: 0, passed: true),
+    //     Stop(pickupPointPosition: 1, cubeDropperPosition: 1, passed: false),
+    //   ],
+    // );
+  }
+
+  static void onCarRouteEnd(String message) {
+    RouteManager.endRoute();
+  }
 }
