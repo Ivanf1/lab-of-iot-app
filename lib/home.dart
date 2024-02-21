@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sm_iot_lab/constants/colors.dart';
 import 'package:sm_iot_lab/screens/map/track_map.dart';
 import 'package:sm_iot_lab/screens/scan/screens/cube_scanner_list.dart';
+import 'package:sm_iot_lab/screens/stats/stats.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -22,9 +23,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     _widgetOptions = <Widget>[
       TrackMap(),
-      const Center(
-        child: Text("Nothing yet"),
-      ),
+      const Stats(),
       const CubeScannerList(),
     ];
     _pageController = PageController(initialPage: _selectedIndex);
