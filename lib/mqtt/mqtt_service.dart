@@ -46,6 +46,15 @@ class MQTTService {
       connected = await client.start();
     }
 
+    client.subscribe("sm_iot_lab/pickup_point/+/cube/insert/response");
+    client.subscribe("sm_iot_lab/pickup_point/+/cube/+/release/response");
+    client.subscribe("sm_iot_lab/cube_scanner/+/cube/scanned");
+    client.subscribe("sm_iot_lab/scanner/+/status");
+    client.subscribe("sm_iot_lab/pickup_point/+/status");
+
+    client.subscribe("sm_iot_lab/car/route/start");
+    client.subscribe("sm_iot_lab/car/route/end");
+
     client.registerTopicMessageHandler(
         "cube/insert/response", onCubeInsertedMessage);
     client.registerTopicMessageHandler(
@@ -55,12 +64,12 @@ class MQTTService {
     client.registerTopicMessageHandler(
         "1/cube/scanned", (String message) => onCubeScanned(1, message));
     client.registerTopicMessageHandler(
-      "cube_scanner/0/status",
+      "scanner/0/status",
       (String message) =>
           onComponentStatusUpdate(0, ComponentType.scanner, message),
     );
     client.registerTopicMessageHandler(
-      "cube_scanner/1/status",
+      "scanner/1/status",
       (String message) =>
           onComponentStatusUpdate(1, ComponentType.scanner, message),
     );
@@ -79,15 +88,6 @@ class MQTTService {
         "car/route/start", (String message) => onCarRouteStart(message));
     client.registerTopicMessageHandler(
         "car/route/end", (String message) => onCarRouteEnd(message));
-
-    client.subscribe("sm_iot_lab/pickup_point/+/cube/insert/response");
-    client.subscribe("sm_iot_lab/pickup_point/+/cube/+/release/response");
-    client.subscribe("sm_iot_lab/cube_scanner/+/cube/scanned");
-    client.subscribe("sm_iot_lab/cube_scanner/+/status");
-    client.subscribe("sm_iot_lab/pickup_point/+/status");
-
-    client.subscribe("sm_iot_lab/car/route/start");
-    client.subscribe("sm_iot_lab/car/route/end");
   }
 
   static void onCubeInsertedMessage(String message) {

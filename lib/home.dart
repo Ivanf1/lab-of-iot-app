@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sm_iot_lab/constants/colors.dart';
-import 'package:sm_iot_lab/screens/map/route_map.dart';
+import 'package:sm_iot_lab/screens/map/screens/route_map.dart';
 import 'package:sm_iot_lab/screens/scan/screens/cube_scanner_list.dart';
-import 'package:sm_iot_lab/screens/stats/stats.dart';
+import 'package:sm_iot_lab/screens/stats/screens/stats.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
