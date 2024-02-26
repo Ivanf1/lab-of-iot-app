@@ -117,14 +117,14 @@ M 59 48.5 m 5, 0 a 5,5 0 1,0 -10,0 a 5,5 0 1,0  10,0'''
           ..color = stop.passed ? Colors.green : Colors.grey
           ..strokeWidth = 3
           ..style = PaintingStyle.fill;
-        canvas.drawPath(_shapes[2]._transformedPath!, _paint);
+        canvas.drawPath(_shapes[3]._transformedPath!, _paint);
       }
       if (stop.pickupPointPosition == 1 && stop.cubeDropperPosition == 0) {
         _paint
           ..color = stop.passed ? Colors.green : Colors.grey
           ..strokeWidth = 3
           ..style = PaintingStyle.fill;
-        canvas.drawPath(_shapes[3]._transformedPath!, _paint);
+        canvas.drawPath(_shapes[2]._transformedPath!, _paint);
       }
       if (stop.pickupPointPosition == 1 && stop.cubeDropperPosition == 1) {
         _paint

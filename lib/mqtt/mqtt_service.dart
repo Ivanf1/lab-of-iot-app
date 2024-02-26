@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:sm_iot_lab/mqtt/mqtt_client.dart';
 import 'package:sm_iot_lab/route/route_manager.dart';
@@ -54,6 +55,7 @@ class MQTTService {
 
     client.subscribe("sm_iot_lab/car/route/start");
     client.subscribe("sm_iot_lab/car/route/end");
+    client.subscribe("sm_iot_lab/car/route/update");
 
     client.registerTopicMessageHandler(
         "cube/insert/response", onCubeInsertedMessage);
@@ -88,6 +90,8 @@ class MQTTService {
         "car/route/start", (String message) => onCarRouteStart(message));
     client.registerTopicMessageHandler(
         "car/route/end", (String message) => onCarRouteEnd(message));
+    client.registerTopicMessageHandler(
+        "car/route/update", (String message) => onCarRouteUpdate(message));
   }
 
   static void onCubeInsertedMessage(String message) {
@@ -121,17 +125,25 @@ class MQTTService {
     return _componentStatus;
   }
 
-  static void onCarRouteUpdate() {}
+  static void onCarRouteUpdate(String message) {
+    final body = jsonDecode(message);
+
+    RouteManager.onRouteUpdate(int.parse(body[1]), int.parse(body[3]), true);
+  }
 
   static void onCarRouteStart(String message) {
-    // RouteManager.startNewRoute(
-    //   [
-    //     Stop(pickupPointPosition: 0, cubeDropperPosition: 0, passed: false),
-    //     Stop(pickupPointPosition: 0, cubeDropperPosition: 1, passed: false),
-    //     Stop(pickupPointPosition: 1, cubeDropperPosition: 0, passed: true),
-    //     Stop(pickupPointPosition: 1, cubeDropperPosition: 1, passed: false),
-    //   ],
-    // );
+    final body = jsonDecode(message);
+    List<Stop> stops = List.empty(growable: true);
+
+    for (var stop in body) {
+      stops.add(Stop(
+        pickupPointPosition: int.parse(stop[1]),
+        cubeDropperPosition: int.parse(stop[3]),
+        passed: false,
+      ));
+    }
+
+    RouteManager.startNewRoute(stops);
   }
 
   static void onCarRouteEnd(String message) {
