@@ -23,7 +23,8 @@ class ApiResponse {
 }
 
 class Api {
-  static const String kApiUrl = "http://172.16.165.51:3000/api";
+  // static const String kApiUrl = "http://172.16.165.51:3000/api";
+  static const String kApiUrl = "http://192.168.1.82:3000/api";
 
   static final Map<String, String> kApiHeaders = {
     'Content-Type': 'application/json; charset=UTF-8',

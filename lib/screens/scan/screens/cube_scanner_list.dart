@@ -37,6 +37,7 @@ class _CubeScannerListState extends State<CubeScannerList> {
     return ListView.builder(
       itemCount: _cubeScanners!.length,
       itemBuilder: (context, index) {
+        if (index > 0) return Container();
         final item = _cubeScanners![index];
         return CubeScannerItem(
           name:

@@ -126,9 +126,10 @@ class MQTTService {
   }
 
   static void onCarRouteUpdate(String message) {
-    final body = jsonDecode(message);
+    // final body = jsonDecode(message);
 
-    RouteManager.onRouteUpdate(int.parse(body[1]), int.parse(body[3]), true);
+    RouteManager.onRouteUpdate(
+        int.parse(message[1]), int.parse(message[3]), true);
   }
 
   static void onCarRouteStart(String message) {

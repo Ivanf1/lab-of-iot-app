@@ -14,6 +14,7 @@ class RouteMap extends StatefulWidget {
 class _RouteMapState extends State<RouteMap> {
   final notifier = ValueNotifier<List<Stop>>([]);
   late StreamSubscription<List<Stop>> _stopsSubscription;
+  int i = 0;
 
   @override
   void initState() {
@@ -24,6 +25,33 @@ class _RouteMapState extends State<RouteMap> {
         .listen((stops) {
       setState(() {
         notifier.value = stops;
+      });
+      if (i == 0) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Route started",
+              style: const TextStyle(color: Colors.white),
+            ),
+            duration: const Duration(seconds: 2),
+            backgroundColor: Colors.grey[600],
+          ),
+        );
+      }
+      if (i == 3) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Route ended",
+              style: const TextStyle(color: Colors.white),
+            ),
+            duration: const Duration(seconds: 2),
+            backgroundColor: Colors.grey[600],
+          ),
+        );
+      }
+      setState(() {
+        i = i + 1;
       });
     });
   }

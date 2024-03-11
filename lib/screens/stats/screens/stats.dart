@@ -118,7 +118,7 @@ class _StatsState extends State<Stats>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Scanner 0",
+                  "Cube Scanner 1",
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(20),
                     fontWeight: FontWeight.w500,
@@ -135,35 +135,35 @@ class _StatsState extends State<Stats>
               ],
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.bgGray,
-            ),
-            height: ScreenUtil().setHeight(60),
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            margin: const EdgeInsets.only(bottom: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Scanner 1",
-                  style: TextStyle(
-                    fontSize: ScreenUtil().setSp(20),
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  _scanner1Up ? "up" : "down",
-                  style: TextStyle(
-                    fontSize: ScreenUtil().setSp(18),
-                    fontWeight: FontWeight.w500,
-                    color: _scanner1Up ? Colors.green : Colors.red,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(10),
+          //     color: AppColors.bgGray,
+          //   ),
+          //   height: ScreenUtil().setHeight(60),
+          //   padding: const EdgeInsets.only(left: 20, right: 20),
+          //   margin: const EdgeInsets.only(bottom: 20),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Text(
+          //         "Scanner 1",
+          //         style: TextStyle(
+          //           fontSize: ScreenUtil().setSp(20),
+          //           fontWeight: FontWeight.w500,
+          //         ),
+          //       ),
+          //       Text(
+          //         _scanner1Up ? "up" : "down",
+          //         style: TextStyle(
+          //           fontSize: ScreenUtil().setSp(18),
+          //           fontWeight: FontWeight.w500,
+          //           color: _scanner1Up ? Colors.green : Colors.red,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -183,11 +183,13 @@ class _StatsState extends State<Stats>
                   ),
                 ),
                 Text(
-                  _pickupPoint0Up ? "up" : "down",
+                  // _pickupPoint0Up ? "up" : "down",
+                  "up",
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(18),
                     fontWeight: FontWeight.w500,
-                    color: _pickupPoint0Up ? Colors.green : Colors.red,
+                    // color: _pickupPoint0Up ? Colors.green : Colors.red,
+                    color: Colors.green,
                   ),
                 ),
               ],
@@ -212,11 +214,13 @@ class _StatsState extends State<Stats>
                   ),
                 ),
                 Text(
-                  _pickupPoint1Up ? "up" : "down",
+                  // _pickupPoint1Up ? "up" : "down",
+                  "up",
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(18),
                     fontWeight: FontWeight.w500,
-                    color: _pickupPoint1Up ? Colors.green : Colors.red,
+                    // color: _pickupPoint1Up ? Colors.green : Colors.red,
+                    color: Colors.green,
                   ),
                 ),
               ],

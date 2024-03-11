@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -84,6 +85,8 @@ class _WebViewPageState extends State<WebViewPage> {
   }
 
   Widget _payloadView(String payload) {
+    var p = jsonDecode(payload);
+
     return Column(
       children: [
         Container(
@@ -99,7 +102,7 @@ class _WebViewPageState extends State<WebViewPage> {
           ),
         ),
         Text(
-          payload,
+          p["payload"],
           style: TextStyle(
             fontSize: ScreenUtil().setSp(40),
           ),
@@ -112,7 +115,8 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.name),
+        // title: Text(widget.name),
+        title: Text("Cube Scanner 1"),
         elevation: 0,
         // automaticallyImplyLeading: false,
         backgroundColor: AppColors.bgGray,
